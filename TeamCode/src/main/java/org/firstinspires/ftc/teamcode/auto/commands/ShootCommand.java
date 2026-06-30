@@ -17,6 +17,7 @@ public class ShootCommand extends SequentialCommandGroup {
                 new WaitCommand(400),
                 r.intake.off(),
                 r.gate.close(),
+                r.intake.transfOn(),
                 new InstantCommand(()->done = true)
         );
     }

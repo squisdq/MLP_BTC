@@ -17,26 +17,26 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class Constants {
     public static FollowerConstants followerConstants = new FollowerConstants()
-            .forwardZeroPowerAcceleration(-34.41482226756982)
-            .lateralZeroPowerAcceleration(-59.02340458740202)
+            .forwardZeroPowerAcceleration(-35.41482226756982)
+            .lateralZeroPowerAcceleration(-61.02340458740202)
 
-            .headingPIDFCoefficients(new PIDFCoefficients(1.615, 0, 0.1425, 0.019))
-            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients(1.9,0,0.095,0))
+            .headingPIDFCoefficients(new PIDFCoefficients(1.615, 0, 0.15, 0.015))
+            .secondaryHeadingPIDFCoefficients(new PIDFCoefficients(1.4,0,0.095,0.025))
 
-            .translationalPIDFCoefficients(new PIDFCoefficients(0.095, 0, 0.0095, 0.0076))
-            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.19, 0, 0.0209, 0))
-            .translationalPIDFSwitch(6)
-
-            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.03325,0.0,0.0000095,0.6,0.19))
-            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.04275, 0, 0.00000665, 0.6, 0.0))
+//            .translationalPIDFCoefficients(new PIDFCoefficients(0.095, 0, 0.0095, 0.0076))
+//            .secondaryTranslationalPIDFCoefficients(new PIDFCoefficients(0.19, 0, 0.0209, 0))
+//            .translationalPIDFSwitch(6)
+//
+//            .drivePIDFCoefficients(new FilteredPIDFCoefficients(0.03325,0.0,0.0000095,0.6,0.19))
+//            .secondaryDrivePIDFCoefficients(new FilteredPIDFCoefficients(0.04275, 0, 0.00000665, 0.6, 0.0))
 
             .centripetalScaling(0)
 
-            .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.15, 0.07519223906924728, 0.0019185831783996089))
+            .predictiveBrakingCoefficients(new PredictiveBrakingCoefficients(0.09, 0.041041995519923375, 0.0019753949352179))
 
-            .useSecondaryTranslationalPIDF(true)
+//            .useSecondaryTranslationalPIDF(true)
             .useSecondaryHeadingPIDF(true)
-            .useSecondaryDrivePIDF(true)
+//            .useSecondaryDrivePIDF(true)
             .mass(11.7);
 
     public static PathConstraints pathConstraints = new PathConstraints(0.96, 100, 1, 1);
@@ -61,8 +61,8 @@ public class Constants {
             .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD)
             .maxPower(1)
             .useBrakeModeInTeleOp(true)
-            .xVelocity(86.636)
-            .yVelocity(66.908)
+            .xVelocity(83.986)
+            .yVelocity(58.119)
             .useVoltageCompensation(true);
 
     public static Follower createFollower(HardwareMap hardwareMap) {

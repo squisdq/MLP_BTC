@@ -4,8 +4,8 @@ import com.acmerobotics.dashboard.config.Config;
 import com.pedropathing.geometry.Pose;
 
 public enum Alliance {
-    BLUE(20, new Pose(2,141.2), new Pose(6,141.5)),//7.67,141.4)),
-    RED(24, new Pose(139.5,143), new Pose(138,141.5));
+    BLUE(20, new Pose(2,141.2), new Pose(2,141.5)),//7.67,141.4)),
+    RED(24, new Pose(142,141.5), new Pose(142,141.5));
     public final int id;
     public final Pose pose;
     public final Pose farPose;

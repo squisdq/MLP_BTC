@@ -17,17 +17,17 @@ public class DoubleIntake extends SubsystemBase {
     ServoEx pto;
 
     public static double transferOnPos = 0.08;
-    public static double transferOffPos = 0.14;
+    public static double transferOffPos = 0.15;
 
 
     public static double in = 1;
     public static double out = -1;
     public static double off = 0;
     public static double shoot = 1;
-    public static double slowShoot = 0.6;
+    public static double slowShoot = 1;
 
     public static double inSpeed = 2100;
-    public static double shootSpeed = 1100;
+    public static double shootSpeed = 2100;
     public static double shootSpeedClose = 2100;
 
     public static double kP = 0.0005, kF = 0.000527;
@@ -90,6 +90,7 @@ public class DoubleIntake extends SubsystemBase {
         setPower(slowShoot);
         transferOn();
     }
+    public InstantCommand transfOn(){return new InstantCommand(this::transferOn);}
     public InstantCommand shoot(){return new InstantCommand(this::spinShoot);}
     public InstantCommand slowShoot(){return new InstantCommand(this::spinSlowShoot);}
     public InstantCommand in(){

@@ -13,8 +13,8 @@ import org.firstinspires.ftc.teamcode.robot.utils.PoseController;
 import org.firstinspires.ftc.teamcode.teleop.DennyOpMode;
 
 
-@TeleOp(name = "RED",group = "111")
-public class CompRedSolo extends DennyOpMode {
+@TeleOp(name = "BEX RED",group = "1111")
+public class BexRed extends DennyOpMode {
     TelemetryPacket packet;
     FtcDashboard dash;
     boolean holdTurret = false;
@@ -50,6 +50,7 @@ public class CompRedSolo extends DennyOpMode {
 
         r.prism.setAllianceColor(a);
 
+        r.drive.setRoboCentric();
 //        r.prism.getSineWave().setDirection(Direction.Forward);
 //        r.prism.getSineWave().setPeriod(50);
 //        r.prism.getSineWave().setPrimaryColor(100,0,100);
@@ -125,7 +126,7 @@ public class CompRedSolo extends DennyOpMode {
 
 
         r.drive.setSlower(1);
-        if(base.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0){
+        if(base.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0){
             r.intake.spinOut();
             r.gate.open_gate();
         }else if(base.getButton(GamepadKeys.Button.RIGHT_BUMPER)){
@@ -133,7 +134,7 @@ public class CompRedSolo extends DennyOpMode {
             r.gate.close_gate();
             r.intake.transferOff();
 //            r.drive.setSlower(0.45);
-        }else if(base.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0){
+        }else if(base.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0){
             if(PoseController.isInFarZone(r.drive.getPose())){
                 r.intake.speedShoot();
                 r.turret.lock();

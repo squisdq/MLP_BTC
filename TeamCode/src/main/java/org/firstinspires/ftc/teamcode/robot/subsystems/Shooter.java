@@ -16,8 +16,8 @@ public class Shooter extends SubsystemBase {
     private MotorEx r;
 
     public static double t = 0;
-    public static double kS = 0.07, kP = 0.003;
-    public static double kV1 = 0.000294, kV2 = 0.000314;
+    public static double kS = 0.09, kP = 0.003;
+    public static double kV1 = 0.000291, kV2 = 0.00030;
     public static double speed1 = 1110, speed2 = 1810;
     public DennyLUT lut;
 
@@ -34,11 +34,16 @@ public class Shooter extends SubsystemBase {
 
         lut = new DennyLUT();
 
-        lut.add(49.2, 1200); //0.8
-        lut.add(77.18, 1320); //0.5
-        lut.add(94.4, 1460); //0.45
-        lut.add(109.5, 1620); //0.45
-        lut.add(138.54, 2040); //0.45
+        lut.add(74.5,1200);//0.7
+        lut.add(99.6,1300);//0.6
+        lut.add(137.9,1500);//0.4
+        lut.add(144, 1550);
+
+//        lut.add(49.2, 1150); //0.8
+//        lut.add(77.18, 1420); //0.5
+//        lut.add(94.4, 1460); //0.45
+//        lut.add(109.5, 1820); //0.45
+//        lut.add(138.54, 1950); //0.45
 
 //        lut.add(49.2, 950);
 //        lut.add(54.2,1000);
@@ -55,7 +60,7 @@ public class Shooter extends SubsystemBase {
     }
 
     public double getVelocity() {
-        return r.getVelocity();
+        return l.getVelocity();
     }
 
     public double getAcceleration() {

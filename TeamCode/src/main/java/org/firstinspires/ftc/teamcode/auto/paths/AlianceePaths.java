@@ -22,7 +22,7 @@ public class AlianceePaths {
     public Pose p3_ctrl   = new Pose(23.929, 59.13,  Math.toRadians(180));
     public Pose p3_end   = new Pose(18.599, 64.854,  Math.toRadians(180));
     public Pose p4_end   = new Pose(59.908, 76.001,  Math.toRadians(180));
-    public Pose p5_end   = new Pose(16.881, 66.801,  Math.toRadians(-163));
+    public Pose p5_end   = new Pose(17.881, 64.801,  Math.toRadians(-163));
     public Pose p7_ctrl   = new Pose(25.273, 57.748,  Math.toRadians(145));
     public Pose p7_end   = new Pose(10.241, 58.054,  Math.toRadians(143));
 

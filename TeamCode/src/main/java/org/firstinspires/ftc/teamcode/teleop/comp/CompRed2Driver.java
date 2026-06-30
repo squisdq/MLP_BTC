@@ -38,7 +38,6 @@ public class CompRed2Driver extends DennyOpMode {
         r.turnOn();
         r.drive.startDrive();
         r.shooter.enableVoltageCompensation(true);
-        r.drive.setRoboCentric();
 
 
         r.prism.setAllianceColor(a);

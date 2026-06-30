@@ -16,6 +16,7 @@ public class PreShooting  extends SequentialCommandGroup {
                 r.shooter.on(),
                 new WaitCommand(200),
                 r.gate.open(),
+                r.intake.transfOn(),
                 new InstantCommand(()->done = true)
         );
     }

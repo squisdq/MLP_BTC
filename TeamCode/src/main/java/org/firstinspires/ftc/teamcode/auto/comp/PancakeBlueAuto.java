@@ -32,6 +32,7 @@ public class PancakeBlueAuto extends CommandOpMode {
         paths = new AlianceePaths(a,r.drive.getFollower());
         r.init(hardwareMap,a,paths.p1_start);
         r.turnOn();
+        r.intake.transferOn();
 
         r.prism.setAllianceColor(a);
 
@@ -43,23 +44,23 @@ public class PancakeBlueAuto extends CommandOpMode {
                         r.intake.off(),
                         r.intake.in(),
                         new FollowPathCommand(r.drive.getFollower(), paths.path1())
-                                .alongWith(new SequentialCommandGroup(new WaitCommand(100), new PreShooting())),
+                                .alongWith(new SequentialCommandGroup(new WaitCommand(300), new PreShooting())),
                         new ShootCommand(),
                         new FollowPathCommand(r.drive.getFollower(), paths.path2()).alongWith(
                                 r.intake.in()),
 
                         new FollowPathCommand(r.drive.getFollower(), paths.path3()),
                         new FollowPathCommand(r.drive.getFollower(), paths.path4())
-                                .alongWith(new SequentialCommandGroup(new WaitCommand(100), new PreShooting())),
+                                .alongWith(new SequentialCommandGroup(new WaitCommand(300), new PreShooting())),
                         new ShootCommand(),
 
-                        new WaitCommand(200),
+                        new WaitCommand(400),
                         cycle(),
-                        new WaitCommand(200),
+                        new WaitCommand(300),
                         cycle(),
-                        new WaitCommand(200),
+                        new WaitCommand(300),
                         cycle(),
-                        new WaitCommand(200),
+                        new WaitCommand(300),
                         cycle(),
 
 
@@ -77,7 +78,7 @@ public class PancakeBlueAuto extends CommandOpMode {
         return new SequentialCommandGroup(
                 new FollowPathCommand(r.drive.getFollower(), paths.path57(),true).alongWith(
                         r.intake.in()),
-                new WaitCommand(950),//1200
+                new WaitCommand(850),//1200
                 new FollowPathCommand(r.drive.getFollower(), paths.path8()).alongWith(new SequentialCommandGroup(
                         new IntakeNorm(),new WaitCommand(100), new PreShooting())),
                 new ShootCommand());
@@ -89,6 +90,7 @@ public class PancakeBlueAuto extends CommandOpMode {
     @Override
     public void run() {
         super.run();
+        r.intake.transfOn();
         Pose futurePose = PoseController.getFuturePose(r.drive.getFollower(), 0.5);
         r.turret.face(a.pose,
                futurePose);
