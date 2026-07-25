@@ -11,24 +11,24 @@ import org.firstinspires.ftc.teamcode.robot.utils.Alliance;
 public class FarAutoPath{
     Follower follower;
 
-    public Pose p1_start = new Pose(55.798, 7.908, Math.toRadians(180));
-    public Pose p1_end   = new Pose(10.106, 8, Math.toRadians(180));
-    public Pose p1_back   = new Pose(15.106, 8, Math.toRadians(180));
+    public Pose p1_start = new Pose(58.798, 7.3708, Math.toRadians(180));
+    public Pose p1_end   = new Pose(16.106, 9, Math.toRadians(180));
+    public Pose p1_back   = new Pose(16.106, 9, Math.toRadians(180));
 
-    public Pose p2_end   = new Pose(61.373, 21.356, Math.toRadians(180));
+    public Pose p2_end   = new Pose(60.373, 18.356, Math.toRadians(180));
 
-    public Pose p3_end   = new Pose(11.617, 37.433, Math.toRadians(180));
+    public Pose p3_end   = new Pose(18.617, 37.433, Math.toRadians(180));
     public Pose p3_ctrl   = new Pose(29.00, 36.60, Math.toRadians(180));
 
-    public Pose p4_end   = new Pose(61.760, 21.114, Math.toRadians(180));
+    public Pose p4_end   = new Pose(60.760, 18.114, Math.toRadians(180));
 
-    public Pose p5_end   = new Pose(11.800, 9.5, Math.toRadians(180));
+    public Pose p5_end   = new Pose(18.800, 9.5, Math.toRadians(180));
 
-    public Pose p6_ctrl   = new Pose(13, 12, Math.toRadians(180));
+    public Pose p6_ctrl   = new Pose(18, 12, Math.toRadians(180));
 
-    public Pose p6_end   = new Pose(12.800, 28.528, Math.toRadians(127));
+    public Pose p6_end   = new Pose(18.800, 28.528, Math.toRadians(127));
 
-    public Pose p7_end   = new Pose(61.313, 21.298, Math.toRadians(180));
+    public Pose p7_end   = new Pose(60.313, 21.298, Math.toRadians(180));
 
     public Pose p8_end   = new Pose(37.573, 21.276, Math.toRadians(180));
 
@@ -103,7 +103,7 @@ public class FarAutoPath{
     public PathChain path6() {
         return follower.pathBuilder()
                 .addPath(new BezierLine(p5_end, p6_end))
-                .setLinearHeadingInterpolation(p5_end.getHeading(), p6_end.getHeading())
+                .setConstantHeadingInterpolation(p6_end.getHeading())
                 .build();
     }
 

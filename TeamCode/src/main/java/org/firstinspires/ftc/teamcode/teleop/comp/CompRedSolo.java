@@ -47,16 +47,11 @@ public class CompRedSolo extends DennyOpMode {
         r.turnOn();
         r.drive.startDrive();
         r.shooter.enableVoltageCompensation(true);
-
-        r.prism.setAllianceColor(a);
-
 //        r.prism.getSineWave().setDirection(Direction.Forward);
 //        r.prism.getSineWave().setPeriod(50);
 //        r.prism.getSineWave().setPrimaryColor(100,0,100);
 //        r.prism.getSineWave().setBrightness(100);
 //        r.prism.getSineWave().setSpeed(3);
-
-        r.prism.update();
 
         r.indicator.set(IndicatorLed.Color.RED);
     }
@@ -119,8 +114,8 @@ public class CompRedSolo extends DennyOpMode {
                     Math.toRadians(goalAngleOffsetDeg));
         }
         double dis = PoseController.getGoalDis(futurePose,a);
-        r.shooter.setDis(dis);
-        r.hood.setDis(dis);
+//        r.shooter.setDis(dis);
+//        r.hood.setDis(dis);
 
 
 
@@ -135,7 +130,7 @@ public class CompRedSolo extends DennyOpMode {
 //            r.drive.setSlower(0.45);
         }else if(base.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0){
             if(PoseController.isInFarZone(r.drive.getPose())){
-                r.intake.speedShoot();
+                r.intake.spinShoot();
                 r.turret.lock();
             }
             else {
@@ -148,7 +143,6 @@ public class CompRedSolo extends DennyOpMode {
             }
             r.indicator.set(IndicatorLed.Color.GREEN);
             is3 = false;
-            r.prism.setNoArti();
         }
         else{
             r.intake.spinOff();

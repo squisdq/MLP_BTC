@@ -36,8 +36,6 @@ public class FarPancakeBlueAuto extends CommandOpMode {
         r.init(hardwareMap,a,paths.p1_start);
         r.turnOn();
 
-        r.prism.setAllianceColor(a);
-
         r.indicator.set(IndicatorLed.Color.PURPLE);
 
         schedule(

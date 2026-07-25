@@ -8,6 +8,8 @@ import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 import com.seattlesolvers.solverslib.hardware.servos.ServoEx;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+
 @Config
 public class AxonTurret extends SubsystemBase {
     public AxonTurret(){}
@@ -21,14 +23,11 @@ public class AxonTurret extends SubsystemBase {
 
     public static boolean on = true;
 
-    public static double maxAngle = Math.toRadians(158);
+    public static double limit = Math.PI/6;
 
     public void init(HardwareMap hw) {
         axon1 = new ServoEx(hw,"t1");
         axon2 = new ServoEx(hw,"t2");
-
-        axon1.setInverted(true);
-        axon2.setInverted(true);
     }
 
     private void setTurretTarget(double ticks) {
@@ -110,7 +109,7 @@ public class AxonTurret extends SubsystemBase {
 
     public void setYaw(double radians) {
         radians = normalizeAngle(radians);
-        setTurretTarget(radians/rpt);
+        setTurretTarget(normalizeAngle(radians - Math.PI)/rpt);
     }
 
     public void addYaw(double radians) {
@@ -126,16 +125,17 @@ public class AxonTurret extends SubsystemBase {
     }
 
     public static double normalizeAngle(double angleRadians) {
-        double angle = angleRadians % (Math.PI * 2D);
-        if (angle <= -Math.PI) angle += Math.PI * 2D;
-        if (angle > Math.PI) angle -= Math.PI * 2D;
-        angle = rangeAngle(angle);
-        return angle;
+//        double angle = angleRadians % (Math.PI * 2D);
+//        if (angle <= -Math.PI) angle += Math.PI * 2D;
+//        if (angle > Math.PI) angle -= Math.PI * 2D;
+//        angle = rangeAngle(angle);
+        return AngleUnit.normalizeRadians(angleRadians);
     }
 
-    public static double rangeAngle(double angleRadians){
-        if (angleRadians <= -maxAngle) angleRadians = -maxAngle;
-        if (angleRadians > maxAngle) angleRadians = maxAngle;
-        return angleRadians;
+    public static double rangeAngle(double radians){
+//        if (radians > -limit && radians < limit) {
+//            radians = (radians >= 0) ? limit : -limit;
+//        }
+        return radians;
     }
 }

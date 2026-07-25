@@ -2,23 +2,15 @@ package org.firstinspires.ftc.teamcode.robot.subsystems;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.seattlesolvers.solverslib.command.InstantCommand;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
-import com.seattlesolvers.solverslib.controller.PIDController;
 import com.seattlesolvers.solverslib.hardware.motors.MotorEx;
-import com.seattlesolvers.solverslib.hardware.servos.ServoEx;
 
 @Config
 public class DoubleIntake extends SubsystemBase {
     public DoubleIntake(){}
 
-    MotorEx mr,ml;
-    ServoEx pto;
-
-    public static double transferOnPos = 0.08;
-    public static double transferOffPos = 0.15;
-
+    MotorEx im, tm;
 
     public static double in = 1;
     public static double out = -1;
@@ -26,49 +18,28 @@ public class DoubleIntake extends SubsystemBase {
     public static double shoot = 1;
     public static double slowShoot = 1;
 
-    public static double inSpeed = 2100;
-    public static double shootSpeed = 2100;
-    public static double shootSpeedClose = 2100;
+    boolean enableTransfer = false;
 
-    public static double kP = 0.0005, kF = 0.000527;
     public void init(HardwareMap hw){
-        mr = new MotorEx(hw,"i1");
-        ml = new MotorEx(hw,"i2");
-        ml.setInverted(true);
-
-        pto = new ServoEx(hw, "pto");
+        im = new MotorEx(hw,"in");//вращает интейк и вертель на мангале
+        tm = new MotorEx(hw,"tr");//ращает трансфер (i hope)
+        tm.setInverted(true);
     }
     public void setPower(double power){
-        mr.set(power);
-        ml.set(power);
+        im.set(power);
+        if(enableTransfer)
+            tm.set(power);
+        else
+            tm.set(0);
     }
     public double getVelocity(){
-        return mr.getVelocity();
-    }
-    public void setSpeed(double speed){
-        double error =  speed - getVelocity();
-        setPower(speed * kF + error * kP);
-    }
-    public void setServoPos(double pos){
-        pto.set(pos);
+        return im.getVelocity();
     }
     public void transferOn(){
-        setServoPos(transferOnPos);
+        enableTransfer = true;
     }
     public void transferOff(){
-        setServoPos(transferOffPos);
-    }
-    public void speedIn(){
-        setSpeed(inSpeed);
-        transferOff();
-    }
-    public void speedShoot(){
-        setSpeed(shootSpeed);
-        transferOn();
-    }
-    public void speedShootClose(){
-        setSpeed(shootSpeedClose);
-        transferOn();
+        enableTransfer = false;
     }
     public void spinIn(){
         setPower(in);
@@ -80,7 +51,7 @@ public class DoubleIntake extends SubsystemBase {
     }
     public void spinOff(){
         setPower(off);
-        transferOff();
+//        transferOff();
     }
     public void spinShoot(){
         setPower(shoot);
@@ -93,16 +64,15 @@ public class DoubleIntake extends SubsystemBase {
     public InstantCommand transfOn(){return new InstantCommand(this::transferOn);}
     public InstantCommand shoot(){return new InstantCommand(this::spinShoot);}
     public InstantCommand slowShoot(){return new InstantCommand(this::spinSlowShoot);}
-    public InstantCommand in(){
-        return new InstantCommand(this::spinIn);
+    public InstantCommand in(){return new InstantCommand(this::spinIn);
     }
 
     public InstantCommand shootSpeedCommand(){
-        return new InstantCommand(this::speedShootClose);
+        return new InstantCommand(this::spinShoot);
     }
 
     public InstantCommand shootSpeedFarCommand(){
-        return new InstantCommand(this::speedShoot);
+        return new InstantCommand(this::spinSlowShoot);
     }
     public InstantCommand out(){
         return new InstantCommand(this::spinOut);

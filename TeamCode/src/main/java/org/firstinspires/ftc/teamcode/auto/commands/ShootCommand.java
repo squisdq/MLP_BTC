@@ -27,16 +27,7 @@ public class ShootCommand extends SequentialCommandGroup {
         Robot r = Robot.getInstance();
         addCommands(
                 r.intake.shootSpeedFarCommand(),
-                new WaitCommand(90),
-                r.intake.off(),
-                new WaitCommand(100),
-                r.intake.shootSpeedFarCommand(),
-                new WaitCommand(60),
-                r.intake.off(),
-                new WaitCommand(100),
-                r.intake.shootSpeedFarCommand(),
-                new WaitCommand(100),
-                r.intake.off(),
+                new WaitCommand(500),
                 r.gate.close(),
                 new InstantCommand(()->done = true)
         );

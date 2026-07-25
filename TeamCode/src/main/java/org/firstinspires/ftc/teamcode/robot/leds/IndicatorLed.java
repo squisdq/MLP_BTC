@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.robot.utils.Alliance;
 @Config
 public class IndicatorLed extends SubsystemBase {
     public static boolean activated = false;
-    Servo indicator;
+    Servo indicator, masturbator;
     public static double color = 0;
 
     public static double min = 0.28;
@@ -35,6 +35,7 @@ public class IndicatorLed extends SubsystemBase {
     ElapsedTime timer;
     public void init(HardwareMap hw){
         indicator = hw.get(Servo.class,"rgbi");
+        masturbator = hw.get(Servo.class, "lgbt");
 
         timer = new ElapsedTime();
         timer.reset();
@@ -49,6 +50,7 @@ public class IndicatorLed extends SubsystemBase {
                 color = min + (max - min) * temp / animTime;
             }
             indicator.setPosition(color);
+            masturbator.setPosition(color);
         }
     }
 

@@ -34,8 +34,6 @@ public class PancakeBlueAuto extends CommandOpMode {
         r.turnOn();
         r.intake.transferOn();
 
-        r.prism.setAllianceColor(a);
-
         r.indicator.set(IndicatorLed.Color.PURPLE);
 
         schedule(
@@ -55,8 +53,6 @@ public class PancakeBlueAuto extends CommandOpMode {
                         new ShootCommand(),
 
                         new WaitCommand(400),
-                        cycle(),
-                        new WaitCommand(300),
                         cycle(),
                         new WaitCommand(300),
                         cycle(),

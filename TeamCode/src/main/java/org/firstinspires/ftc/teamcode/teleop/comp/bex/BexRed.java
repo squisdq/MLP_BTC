@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.teleop.comp;
+package org.firstinspires.ftc.teamcode.teleop.comp.bex;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.pedropathing.geometry.Pose;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.seattlesolvers.solverslib.gamepad.GamepadKeys;
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.robot.utils.Alliance;
 import org.firstinspires.ftc.teamcode.robot.utils.PoseController;
 import org.firstinspires.ftc.teamcode.teleop.DennyOpMode;
 
-
+@Disabled
 @TeleOp(name = "BEX RED",group = "1111")
 public class BexRed extends DennyOpMode {
     TelemetryPacket packet;
@@ -48,16 +49,12 @@ public class BexRed extends DennyOpMode {
         r.drive.startDrive();
         r.shooter.enableVoltageCompensation(true);
 
-        r.prism.setAllianceColor(a);
-
         r.drive.setRoboCentric();
 //        r.prism.getSineWave().setDirection(Direction.Forward);
 //        r.prism.getSineWave().setPeriod(50);
 //        r.prism.getSineWave().setPrimaryColor(100,0,100);
 //        r.prism.getSineWave().setBrightness(100);
 //        r.prism.getSineWave().setSpeed(3);
-
-        r.prism.update();
 
         r.indicator.set(IndicatorLed.Color.RED);
     }
@@ -81,9 +78,6 @@ public class BexRed extends DennyOpMode {
             goalAngleOffsetDeg = 0;
             holdTurret = false;
             r.shooter.resetVelOffset();
-        }
-        if(base.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)){
-            r.drive.teleToggleCentric();
         }
 
         r.turret.unlock();
@@ -126,7 +120,7 @@ public class BexRed extends DennyOpMode {
 
 
         r.drive.setSlower(1);
-        if(base.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0){
+        if(base.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0){
             r.intake.spinOut();
             r.gate.open_gate();
         }else if(base.getButton(GamepadKeys.Button.RIGHT_BUMPER)){
@@ -134,9 +128,9 @@ public class BexRed extends DennyOpMode {
             r.gate.close_gate();
             r.intake.transferOff();
 //            r.drive.setSlower(0.45);
-        }else if(base.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0){
+        }else if(base.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0){
             if(PoseController.isInFarZone(r.drive.getPose())){
-                r.intake.speedShoot();
+                r.intake.spinShoot();
                 r.turret.lock();
             }
             else {
@@ -149,7 +143,6 @@ public class BexRed extends DennyOpMode {
             }
             r.indicator.set(IndicatorLed.Color.GREEN);
             is3 = false;
-            r.prism.setNoArti();
         }
         else{
             r.intake.spinOff();

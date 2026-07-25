@@ -5,7 +5,6 @@ import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.robot.leds.IndicatorLed;
-import org.firstinspires.ftc.teamcode.robot.leds.PrismLed;
 import org.firstinspires.ftc.teamcode.robot.subsystems.AxonTurret;
 import org.firstinspires.ftc.teamcode.robot.subsystems.DoubleIntake;
 import org.firstinspires.ftc.teamcode.robot.subsystems.*;
@@ -22,9 +21,7 @@ public class Robot {
         hood = new Hood();
         turret = new AxonTurret();
         voltage = new VoltageController();
-        prism = new PrismLed();
         indicator = new IndicatorLed();
-        kickstand = new Kickstand();
     }
     public static Robot getInstance(){return INSTANCE;}
     private Alliance a;
@@ -35,9 +32,7 @@ public class Robot {
     public final Hood hood;
     public final AxonTurret turret;
     public final VoltageController voltage;
-    public final PrismLed prism;
     public final IndicatorLed indicator;
-    public final Kickstand kickstand;
 
     public static Pose defaultPose = new Pose(72, 72, Math.toRadians(90));
     private static boolean isAutoBeen = false;
@@ -56,7 +51,6 @@ public class Robot {
         hood.activate(false);
         shooter.turnOff();
         turret.off();
-        kickstand.activate(false);
     }
 
 
@@ -73,9 +67,7 @@ public class Robot {
         hood.init(hw);
         turret.init(hw);
         voltage.init(hw);
-        prism.init(hw);
         indicator.init(hw);
-        kickstand.init(hw);
     }
 
     public void periodic(){
